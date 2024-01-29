@@ -11,6 +11,10 @@ import * as fs from 'fs-extra';
 import { EventEmitter } from 'events';
 import * as readline from 'readline';
 import Debug from 'debug';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 import pkg from '../package.json' assert { type: "json" };

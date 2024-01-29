@@ -13,7 +13,7 @@ import * as readline from 'readline';
 import Debug from 'debug';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-import pkg from '../package.json';
+import pkg from '../package.json' assert { type: "json" };
 const debug = Debug('systray');
 const getTrayBinPath = (debug = false, copyDir = false) => {
     const binName = {

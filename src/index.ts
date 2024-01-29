@@ -6,7 +6,7 @@ import { EventEmitter } from 'events';
 import * as readline from 'readline';
 import Debug from 'debug';
 
-import pkg from '../package.json';
+import pkg from '../package.json' assert { type: "json" };
 const debug = Debug('systray');
 
 export type MenuItem = {

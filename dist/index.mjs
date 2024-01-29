@@ -7,7 +7,7 @@
 import * as child from 'child_process';
 import * as path from 'path';
 import * as os from 'os';
-import * as fs from 'fs-extra';
+import * as fs from 'fs';
 import { EventEmitter } from 'events';
 import * as readline from 'readline';
 import Debug from 'debug';
@@ -35,8 +35,14 @@ const getTrayBinPath = (debug = false, copyDir = false) => {
             : `${os.homedir()}/.cache/node-systray/`, pkg.version);
         const copyDistPath = path.join(copyDir, binName);
         if (!fs.existsSync(copyDistPath)) {
-            fs.ensureDirSync(copyDir);
-            fs.copySync(binPath, copyDistPath);
+            // Check if the directory exists
+            if (!fs.existsSync(copyDir)) {
+                // Recursively create the directory
+                fs.mkdirSync(copyDir, { recursive: true });
+            }
+            
+            // Copy the file
+            fs.copyFileSync(binPath, copyDistPath);
         }
         return copyDistPath;
     }
